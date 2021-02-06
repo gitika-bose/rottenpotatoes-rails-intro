@@ -11,14 +11,14 @@ class MoviesController < ApplicationController
     @sort = params[:sort]
     if @sort == nil
       if params[:ratings] == nil
-        @ratings_to_show = []
+        @ratings_to_show = ['G','PG','PG-13','R']
       else
         @ratings_to_show = params[:ratings].keys
       end
       @movies = Movie.with_ratings(@ratings_to_show, nil)
     else
       if params[:ratings] == nil
-        @ratings_to_show = []
+        @ratings_to_show = ['G','PG','PG-13','R']
       else
         @ratings_to_show = params[:ratings].keys
       end
