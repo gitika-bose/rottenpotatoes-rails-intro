@@ -16,15 +16,15 @@
   <thead>
     <tr>
       <% if @sort=="title" %>
-        <th class="bg-warning hilite"><a id="title_header"><%= link_to "Movie Title", movies_path(:sort => "title", :ratings => Hash[ *@ratings_to_show.collect { |v| [ v, "1" ] }.flatten ]) %></th>
+        <th class="bg-warning hilite"><%= link_to "Movie Title", movies_path(:sort => "title", :ratings => Hash[ *@ratings_to_show.collect { |v| [ v, "1" ] }.flatten ]), id: 'title_header'%></th>
       <% else %>
-        <th class=""><a id="title_header"><%= link_to "Movie Title", movies_path(:sort => "title", :ratings => Hash[ *@ratings_to_show.collect { |v| [ v, "1" ] }.flatten ]) %></th>
+        <th><%= link_to "Movie Title", movies_path(:sort => "title", :ratings => Hash[ *@ratings_to_show.collect { |v| [ v, "1" ] }.flatten ]), id: 'title_header'%></th>
       <% end %>
       <th>Rating</th>
       <% if @sort=="release_date" %>
-        <th class="bg-warning hilite"><a id="release_date_header"><%= link_to "Release Date", movies_path(:sort => "release_date", :ratings => Hash[ *@ratings_to_show.collect { |v| [ v, "1" ] }.flatten ]) %></th>
+        <th class="bg-warning hilite"><%= link_to "Release Date", movies_path(:sort => "release_date", :ratings => Hash[ *@ratings_to_show.collect { |v| [ v, "1" ] }.flatten ]), id: 'release_date_header'%></th>
       <% else %>
-        <th class=""><a id="release_date_header"><%= link_to "Release Date", movies_path(:sort => "release_date", :ratings => Hash[ *@ratings_to_show.collect { |v| [ v, "1" ] }.flatten ]) %></th>
+        <th><%= link_to "Release Date", movies_path(:sort => "release_date", :ratings => Hash[ *@ratings_to_show.collect { |v| [ v, "1" ] }.flatten ]), id: 'release_date_header'%></th>
       <% end %>
       <th>More Info</th>
     </tr>
