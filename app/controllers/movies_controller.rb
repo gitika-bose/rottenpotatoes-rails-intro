@@ -12,12 +12,14 @@ class MoviesController < ApplicationController
     end
     puts session[:home]
 
-    if params[:ratings] == nil and session[:home]["ratings"]
-      redirect_to movies_path(session[:home]) and return
-    end
+    if session[:home]
+      if params[:ratings] == nil and session[:home]["ratings"]
+        redirect_to movies_path(session[:home]) and return
+      end
 
-    if params[:sort] == nil and session[:home]["sort"]
-      redirect_to movies_path(session[:home]) and return
+      if params[:sort] == nil and session[:home]["sort"]
+        redirect_to movies_path(session[:home]) and return
+      end
     end
 
     @all_ratings = Movie.all_ratings
