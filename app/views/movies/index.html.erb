@@ -1,11 +1,11 @@
 <!--  This file is app/views/movies/index.html.erb -->
 <h2>All Movies</h2>
-
 <%= form_tag movies_path, method: :get, id: 'ratings_form' do %>
   Include:
   <% @all_ratings.each do |rating| %>
     <div class="form-check  form-check-inline">
       <%= label_tag "ratings[#{rating}]", rating, class: 'form-check-label' %>
+      <%= hidden_field_tag "home", 1 %>
       <%= check_box_tag "ratings[#{rating}]", "1",  @ratings_to_show.include?(rating), class: 'form-check-input' %>
     </div>
   <% end %>
@@ -18,13 +18,13 @@
       <% if @sort=="title" %>
         <th class="bg-warning hilite"><%= link_to "Movie Title", movies_path(:sort => "title", :ratings => Hash[ *@ratings_to_show.collect { |v| [ v, "1" ] }.flatten ]), id: 'title_header'%></th>
       <% else %>
-        <th><%= link_to "Movie Title", movies_path(:sort => "title", :ratings => Hash[ *@ratings_to_show.collect { |v| [ v, "1" ] }.flatten ]), id: 'title_header'%></th>
+        <th><%= link_to "Movie Title", movies_path(:home => 1, :sort => "title", :ratings => Hash[ *@ratings_to_show.collect { |v| [ v, "1" ] }.flatten ]), id: 'title_header'%></th>
       <% end %>
       <th>Rating</th>
       <% if @sort=="release_date" %>
         <th class="bg-warning hilite"><%= link_to "Release Date", movies_path(:sort => "release_date", :ratings => Hash[ *@ratings_to_show.collect { |v| [ v, "1" ] }.flatten ]), id: 'release_date_header'%></th>
       <% else %>
-        <th><%= link_to "Release Date", movies_path(:sort => "release_date", :ratings => Hash[ *@ratings_to_show.collect { |v| [ v, "1" ] }.flatten ]), id: 'release_date_header'%></th>
+        <th><%= link_to "Release Date", movies_path(:home => 1, :sort => "release_date", :ratings => Hash[ *@ratings_to_show.collect { |v| [ v, "1" ] }.flatten ]), id: 'release_date_header'%></th>
       <% end %>
       <th>More Info</th>
     </tr>

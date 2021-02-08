@@ -7,6 +7,19 @@ class MoviesController < ApplicationController
   end
 
   def index
+    if params[:home]
+      session[:home] = params
+    end
+    puts session[:home]
+
+    if params[:ratings] == nil and session[:home]["ratings"]
+      redirect_to movies_path(session[:home]) and return
+    end
+
+    if params[:sort] == nil and session[:home]["sort"]
+      redirect_to movies_path(session[:home]) and return
+    end
+
     @all_ratings = Movie.all_ratings
     @sort = params[:sort]
     if @sort == nil
@@ -23,6 +36,7 @@ class MoviesController < ApplicationController
         @ratings_to_show = params[:ratings].keys
       end
       @movies = Movie.with_ratings(@ratings_to_show, @sort)
+      @home = params[:home]
     end
   end
 
